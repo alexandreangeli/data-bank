@@ -1,0 +1,581 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+* {
+    transition: all .2s ease-in-out;
+}
+
+
+
+
+/*PAGINA INICIAL*/
+.header-site {
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),url(../images/slider/b1.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    padding-top: 18%;
+    padding-bottom: 20%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  
+}
+
+
+.code {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),url(../images/slider/code.gif);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+ 
+}
+.about {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)),url(../images/slider/b3.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+.alerts {
+    background-color: rgba(100, 100, 100, 0.80);
+
+}
+
+
+.content-site {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+/*FIM DA PAGINA INICIAL*/
+
+
+
+
+/*================================================================================================================================>*/
+/*================================================================================================================================>*/
+/*====================================LIXO========================================================================================>*/
+/*================================================================================================================================>*/
+
+
+footer {
+    width: auto;
+    height: 5%;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    overflow-x: hidden;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 68px;
+    min-height: 95%;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+.newcss {
+    text-decoration: none;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+
+    .banco{
+       float:left;
+       margin-left:-15px;
+    }
+
+
+
+}
+
+.navs {
+    transition: all .3s ease-in-out;
+    width: auto;
+    /* border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;*/
+    /*background-color: rgba(13,155,202,0.60);*/
+    background-color: #00747C;
+}
+/*ADD*/
+
+/*FONT*/
+
+
+
+
+.desck {
+    height: 200px;
+    width: 200px;
+}
+
+.bord {
+    /*border: solid rgba(9, 155, 7, 0.83) 1px;*/
+}
+
+.img-responsive, .text-center {
+    margin: 0px;
+    padding: 0px;
+}
+
+.animadiv {
+    will-change: transform;
+    opacity: 0;
+    transform: translate3d(-100px,0,0) scale(0.9);
+    filter: grayscale(100%) blur(2px);
+    transition: .4s;
+}
+
+.animadiv-start {
+    will-change: transform;
+    opacity: 1;
+    transform: translate3d(0,0,0) scale(1.0);
+    filter: grayscale(0%) blur(0px);
+}
+
+.fundo {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(-55deg,rgba(213, 213, 213, 0.44),#ffffff,rgba(213, 213, 213, 0.44),#00747C);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/*================================================================================================================================>*/
+/*================================================================================================================================>*/
+/*====================================FIM DO LIXO=================================================================================>*/
+/*================================================================================================================================>*/
+
+
+
+/*====================================================MODAl======================================================*/
+.modal-container{
+    height:100vh;
+    width:100vw;
+    background:rgba(0,0,0,.5);
+    position:fixed;
+    top:0px;
+    left:0px;
+    z-index:2000;
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+
+
+
+
+}
+.modal-container.mostra{
+    display:flex;
+
+
+
+}
+.mostra .erro{
+
+
+    animation:erro 1s;
+}
+
+@keyframes erro{
+    from{
+        opacity:0.1;
+        transform:translate3d(0,-60px,0);
+
+
+
+    }
+    to {
+        opacity:1;
+        transform: translate3d(0,0,0);
+    }
+
+
+}
+
+
+.erro{
+    background:rgba(255,255,255,0.9);
+    width:50%;
+    min-width:300px;
+    padding:40px;
+    border:groove 5px #fb4d4d;
+    border-radius:2%;
+    text-align:center;
+    position:relative;
+    font-weight:bolder;
+    box-shadow:0px 0px 0px 4px  #00747C;
+   
+}
+.fecha {
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    width: 50px;
+    height: 50px;
+    border: solid 5px #ffffff;
+    background: rgba(160, 20, 20, 1);
+    border-radius: 50px;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.3);
+    color:#ffffff;
+    font-size:20px;
+    cursor:pointer;
+}
+.fonte {
+    font-family: 'PT Sans', sans-serif;
+}
+/*=============================================================================
+  ===========================Seletores De Layout===============================
+*/
+.pai {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.6)), url(https://images.pexels.com/photos/53621/calculator-calculation-insurance-finance-53621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260),url(../images/wallpapers/extrato.jpg);
+    background-size: cover;
+    padding: 10% 0% 20% 0%;
+    background-attachment: fixed;
+    margin: 0px;
+}
+.log {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/wallpapers/login.jpg);
+    background-size: cover;
+    padding: 10% 0% 20% 0%;
+    margin: 0px;
+    background-attachment: fixed;
+    background-position-y:-600px;
+}
+
+#icone {
+    position: relative;
+    top: 5px;
+}
+.fundos{
+    height:100%;
+    width:30%;
+    left:35%;
+    position:relative;
+    background:#222222;
+
+
+
+}
+
+.entrada{
+    animation:entrada 1s ease-in-out;
+
+
+
+}
+@keyframes entrada{
+    from{
+        opacity:0.5;
+        transform:scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+
+
+}
+
+
+.filho{
+    color:#ffffff;
+    font-size:1.2em;
+    font-weight:bold;
+    height:20%;
+    width:60%;
+    min-width:300px;
+    position:relative;
+    padding:40px;
+    background:rgba(0,98,100,.5);
+  
+  
+
+
+}
+.filho-login {
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 10%;
+    width: 40%;
+    min-width: 200px;
+    position: relative;
+    padding: 10px;
+    background: rgba(0,98,100,.5);
+}
+
+
+
+
+
+
+
+
+.pai-estorno {
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/wallpapers/estorno.png),url(https://gcn.com/articles/2015/03/31/~/media/GIG/GCN/Redesign/Articles/2015/March/delete.png);
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 10% 0% 25% 0%;
+    margin: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+.inputs {
+    margin-left: 30%;
+    padding-bottom: 20px;
+    width: 40%;
+}
+.mov {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(rgba(0,0,0,.5),rgba( 0,0,0,.7)), url(https://images.pexels.com/photos/1602726/pexels-photo-1602726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260),url(../images/wallpapers/pig.jpg);
+    background-size: cover;
+    padding: 10% 0% 21% 0%;
+    background-attachment: fixed;
+    margin: 0px;
+}
+    a{
+        text-decoration:none;
+    }
+@media screen (max-width:1000px){
+    .mov {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.6)), url(https://images.pexels.com/photos/53621/calculator-calculation-insurance-finance-53621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260),url(../images/wallpapers/extrato.jpg);
+        background-size: cover;
+        padding: 20% 0% 42% 0%;
+        margin: 0px;
+    }
+    .btns {
+        position: relative;
+        bottom: -100px;
+        min-width:300px;
+    }
+
+}
+.btns {
+    position: relative;
+    bottom: -120px;
+}
+.bt-b {
+    position: relative;
+    bottom: -30px;
+}
+.botoes{
+    position:relative;
+    margin:10px;
+    width:27%;
+    min-width:27%;
+    height:5%;
+    max-height:5%;
+    min-height:5%;
+    
+
+}
+
+
+
+.pai-banco {
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/wallpapers/banco.jpeg),url(https://images.pexels.com/photos/1451448/pexels-photo-1451448.jpeg?cs=srgb&dl=analysis-banking-business-1451448.jpg&fm=jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    width: 100%;
+    height: 100%;
+    padding: 10% 0% 18% 0%;
+    margin: 0;
+}
+.btnb {
+    position: relative;
+    bottom: -20%;
+    left:45%;
+}
+.cor {
+    background: #282828;
+    color: white;
+    position: relative;
+}
+.pai-empresa {
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),url(../images/wallpapers/empresa.jpeg), url(https://images.pexels.com/photos/1661004/pexels-photo-1661004.jpeg?cs=srgb&dl=adults-analysis-brainstorming-1661004.jpg&fm=jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 10% 0% 18% 0%;
+    margin: 0;
+}
+.pai-pessoa {
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/wallpapers/pessoa.jpeg),url(https://images.pexels.com/photos/1249158/pexels-photo-1249158.jpeg?cs=srgb&dl=accomplishment-agreement-business-1249158.jpg&fm=jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 10% 0% 20% 0%;
+    margin: 0;
+}
+.pai-agencia {
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/wallpapers/agencia.jpeg),url(https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?cs=srgb&dl=adult-agency-business-380769.jpg&fm=jpg );
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width:100%;
+    padding: 8% 0% 11% 0%;
+    margin: 0;
+}
+.pai-conta {
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/wallpapers/contacorrente.jpeg),url(https://images.pexels.com/photos/53621/calculator-calculation-insurance-finance-53621.jpeg?cs=srgb&dl=accounting-bill-black-53621.jpg&fm=jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 8% 0% 15% 0%;
+    margin: 0;
+}
+
+
+.pai-filial {
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/wallpapers/filial.jpeg ),url(https://images.pexels.com/photos/938963/pexels-photo-938963.jpeg?cs=srgb&dl=accounting-alone-analysis-938963.jpg&fm=jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 8% 0% 11% 0%;
+    margin: 0;
+}
+.pai-usuario {
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/wallpapers/usuario.jpeg),url(https://images.pexels.com/photos/1068523/pexels-photo-1068523.jpeg?cs=srgb&dl=achievement-agreement-arms-1068523.jpg&fm=jpg );
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 10% 0% 17% 0%;
+    margin: 0;
+}
+.pai-posto {
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/wallpapers/postodecaixa.jpeg),url(https://images.pexels.com/photos/533189/pexels-photo-533189.jpeg?cs=srgb&dl=arrows-box-business-533189.jpg&fm=jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 10% 0% 17% 0%;
+    margin: 0;
+}
+.pai-inicio {
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../../wwwroot/images/iniciologado.jpeg), url(https://images.pexels.com/photos/573565/pexels-photo-573565.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 10% 0% 23% 0%;
+    margin: 0;
+    text-align: center;
+}

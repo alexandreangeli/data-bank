@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BancoDataCoper.Migrations
+namespace Databank.Migrations
 {
     public partial class BancoDeDados : Migration
     {

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BancoDataCoper.Models;
+using Databank.Models;
 
 using Microsoft.EntityFrameworkCore;
-using static BancoDataCoper.Repositories.BancoRepository;
+using static Databank.Repositories.BancoRepository;
 
-namespace BancoDataCoper.Repositories
+namespace Databank.Repositories
 {
     public interface IBancoRepository
     {

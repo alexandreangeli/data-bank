@@ -1,4 +1,4 @@
-﻿using BancoDataCoper.Repositories;
+﻿using Databank.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BancoDataCoper
+namespace Databank
 {
     public class DataService : IDataService
     {

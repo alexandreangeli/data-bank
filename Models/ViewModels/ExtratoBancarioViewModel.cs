@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace BancoDataCoper.Models.ViewModels
+namespace Databank.Models.ViewModels
 {
     public class ExtratoBancarioViewModel
     {

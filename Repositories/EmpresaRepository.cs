@@ -1,4 +1,4 @@
-﻿using BancoDataCoper.Models;
+﻿using Databank.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BancoDataCoper.Repositories
+namespace Databank.Repositories
 {
     public interface IEmpresaRepository
     {

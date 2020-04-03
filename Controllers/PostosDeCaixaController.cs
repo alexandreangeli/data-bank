@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BancoDataCoper.Models;
-using BancoDataCoper.Repositories;
+using Databank.Models;
+using Databank.Repositories;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using BancoDataCoper.Models.ViewModels;
+using Databank.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
-namespace BancoDataCoper.Controllers
+namespace Databank.Controllers
 {
     [Authorize]
     public class PostosDeCaixaController : Controller

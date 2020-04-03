@@ -1,11 +1,11 @@
-﻿using BancoDataCoper.Models;
-using BancoDataCoper.Repositories;
+﻿using Databank.Models;
+using Databank.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BancoDataCoper.Controllers
+namespace Databank.Controllers
 {
     [Authorize]
     public class PessoasController : Controller

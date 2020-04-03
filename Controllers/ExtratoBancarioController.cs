@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using BancoDataCoper.Models.ViewModels;
-using BancoDataCoper.Repositories;
+using Databank.Models.ViewModels;
+using Databank.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BancoDataCoper.Controllers
+namespace Databank.Controllers
 {
     public class ExtratoBancarioController : Controller
     {

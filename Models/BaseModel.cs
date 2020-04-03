@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace BancoDataCoper.Models
+namespace Databank.Models
 {
     [DataContract]
     public class BaseModel

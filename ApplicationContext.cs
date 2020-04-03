@@ -1,9 +1,9 @@
-﻿using BancoDataCoper.Models;
+﻿using Databank.Models;
 
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 
-namespace BancoDataCoper.Repositories
+namespace Databank.Repositories
 {
     public class ApplicationContext : DbContext
     {

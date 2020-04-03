@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace BancoDataCoper.Models
+namespace Databank.Models
 {
     public class PessoaFisica : BaseModel
     {

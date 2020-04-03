@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BancoDataCoper.Models;
-using BancoDataCoper.Repositories;
+using Databank.Models;
+using Databank.Repositories;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using BancoDataCoper.Models.ViewModels;
+using Databank.Models.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System;
 using Microsoft.AspNetCore.Authorization;
 
-namespace BancoDataCoper.Controllers
+namespace Databank.Controllers
 {    
     public class UsuariosController : Controller
     {

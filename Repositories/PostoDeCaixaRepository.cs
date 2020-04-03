@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BancoDataCoper.Models;
+using Databank.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BancoDataCoper.Repositories
+namespace Databank.Repositories
 {
     public interface IPostoDeCaixaRepository
     {

@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BancoDataCoper.Models
+namespace Databank.Models
 {
     [DataContract]
     public class Usuario : BaseModel

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace BancoDataCoper
+namespace Databank
 {
     public interface IDataService
     {

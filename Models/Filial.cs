@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace BancoDataCoper.Models
+namespace Databank.Models
 {
     public class Filial : BaseModel
     {

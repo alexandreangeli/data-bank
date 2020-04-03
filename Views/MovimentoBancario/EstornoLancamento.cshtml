@@ -1,0 +1,187 @@
+﻿@model MovimentoBancarioViewModel
+
+@{
+    ViewData["Title"] = "Estorno Bancário";
+}
+
+
+
+<div class="pai-estorno">
+    <div class=" rounded font font-weight-bold filho ">
+        <h2 class="font font-weight-bold text-center m-1">Estorno</h2>
+        <form action="ExibirMovimentos" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label font font-weight-bold">Conta Corrente</label>
+                @if (Model.Usuario.Email == "admin")
+                {
+                    <div banco class="form-group inputs">
+                        Banco
+                        <select data-val="true" data-val-required="The Banco field is required." class="form-control" id="SelectedBancoId" name="SelectedBancoId" onchange="reloadEstorno()">
+                            @foreach (var banco in Model.Bancos)
+                            {
+                                <option value="@banco.Id">@banco.Nome</option>
+                            }
+                        </select>
+                        <script>
+                        $("#SelectedBancoId option[value=" + @Model.BancoIdd + "]").attr('selected', 'selected');
+                        </script>
+                    </div>
+                    <div filial class="form-group inputs">
+                        Filial
+                        <select data-val="true" data-val-required="The Filial field is required." class="form-control" id="SelectedFilialId" name="SelectedFilialId" onchange="reloadEstorno()">
+                            @foreach (var filial in Model.Filiais)
+                            {
+                                <option value="@filial.Id">@filial.PessoaJuridica.Nome</option>
+                            }
+                        </select>
+                        <script>
+                        $("#SelectedFilialId option[value=" + @Model.FilialIdd + "]").attr('selected', 'selected');
+                        </script>
+                    </div>
+                    <div contaCorrente class="form-group inputs">
+                        Conta Corrente
+                        <select data-val="true" data-val-required="The ContaCorrente field is required." class="form-control" id="ContaCorrenteId" name="ContaCorrenteId">
+                            @foreach (var contaCorrente in Model.ContasCorrentes)
+                            {
+                                var ContaCorrenteDb = Model.ContasCorrentesDB.Where(c => c.Id == contaCorrente.Id).FirstOrDefault();
+
+                                if ((ContaCorrenteDb.Filial.Id == Model.FilialIdd && ContaCorrenteDb.Banco.Id == Model.BancoIdd && ContaCorrenteDb.Ativo == true))
+                                {
+                                    <option value="@contaCorrente.Id">@contaCorrente.NumeroDaConta @contaCorrente.DigitoVerificadorCC</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group inputs">
+
+                        <select data-val="true" data-val-required="The Conta Corrente field is required." class="form-control" id="ContaCorrenteId" name="ContaCorrenteId">
+
+                            @foreach (var postoDeCaixa in Model.Usuario.PostosDeCaixa)
+                            {
+                                if (postoDeCaixa.Ativo == true)
+                                {
+                                    <option value="@postoDeCaixa.ContaCorrente.Id">@postoDeCaixa.ContaCorrente.NumeroDaConta @postoDeCaixa.ContaCorrente.DigitoVerificadorCC</option>
+                                }
+                            }
+                            }
+                        </select>
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input name="dataCheck" hidden type="checkbox" id="checkbox" value="false" /><label for="checkbox" style="cursor:pointer;" class="text-center"><i class="material-icons " id="icone">event_busy</i>Incluir data</label>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group inputs">
+                <label name="dataLabel" asp-for="Data" class="control-label">Data:</label>
+                <input id="dataInput" value="@DateTime.MinValue" type="date" name="Data" asp-for="Data" class="form-control" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="Confirmar" class="btn btn-primary rounded-pill m-2" />
+            </div>
+        </form>
+
+        <div class="btns">
+            <a asp-controller="Home" asp-action="InicioLogado" class="btn btn-dark rounded-pill"><i class="material-icons  float-left font">arrow_back</i>Voltar</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+
+            $('input[name="Data"]').hide();
+            $('label[name="dataLabel"]').hide();
+
+            //show it when the checkbox is clicked
+            $('input[name="dataCheck"]').on('click', function () {
+                if ($(this).prop('checked')) {
+                    $('input[name="Data"]').fadeIn();
+                    $('label[name="dataLabel"]').fadeIn();
+                }
+                else {
+                    $('#dataInput').val("@DateTime.MinValue");
+                    $('input[name="Data"]').hide();
+                    $('label[name="dataLabel"]').hide();
+                }
+            });
+
+            function reloadEstorno() {
+                var e = document.getElementById("SelectedBancoId");
+                var f = document.getElementById("SelectedFilialId");
+
+                var strUser1 = e.options[e.selectedIndex].value;
+                var strUser2 = f.options[f.selectedIndex].value;
+                $.ajax({
+                    url: '/movimentobancario/estornolancamento',
+                    type: 'GET',
+                    data: {
+                        "bancoId": strUser1,
+                        "filialId": strUser2
+                    }
+                }).done(function (response) {
+                    location.replace('/MovimentoBancario/EstornoLancamento?bancoId=' + strUser1 + '&filialId=' + strUser2)
+                });
+            }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $("#checkbox").change(function () {
+                var checado = $(this).is(":checked");
+       
+
+            if (!checado) {
+
+                $("#icone").text("event_busy");
+              
+
+
+            }
+            else {
+
+                $("#icone").text("event_available");
+                animacao();
+
+
+            }
+
+
+
+
+
+        });
+        function animacao() {
+            $("#checkbox").toggleClass("entrada");
+
+
+
+
+
+
+        };
+
+
+
+            });
+
+
+
+
+
+    </script>
+}

@@ -1,0 +1,129 @@
+﻿@model UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Editar Usuário";
+}
+<div class="pai-usuario">
+    <div class="filho">
+        <div class="col-md-8 cor offset-2  rounded">
+
+            <h4 class="font font-weight-bolder text-center m-1">Editar Usuários</h4>
+            <hr />
+            <form item-id="@Model.Usuario.Id" id='form_id' asp-action="index" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div empresa class="form-group">
+                    <label class="control-label font font-weight-bold">Empresa</label>
+                    <select data-val="true" data-val-required="The Empresa field is required." class="custom-select" id="SelectedEmpresaId" name="SelectedEmpresaId" onchange="usuarioJs.reloadEdit(@Model.Usuario.Id)">
+                        @foreach (var empresa in Model.Empresas)
+                        {
+                            <option value="@empresa.Value">@empresa.Text</option>
+                        }
+                    </select>
+
+                    <script>
+                    $("#SelectedEmpresaId option[value=" + @Model.EmpresaIdd + "]").attr('selected', 'selected');
+                    </script>
+
+                    <a class="btn-xs ml-2" asp-controller="Empresas" asp-action="Create">Criar Nova Empresa</a>
+                </div>
+                <div filial class="form-group">
+                    <label class="control-label font font-weight-bold">Filial</label>
+                    <select data-val="true" data-val-required="The Filial field is required." class="custom-select" id="SelectedFilialId" name="SelectedFilialId">
+                        @foreach (var filial in Model.Filiais)
+                        {
+
+                            var FilialDb = Model.FiliaisDB.Where(f => f.Id.ToString() == filial.Value).FirstOrDefault();
+
+                            if ((FilialDb.Empresa.Id.ToString() == Model.EmpresaIdd))
+                            {
+                                <option value="@filial.Value">@filial.Text</option>
+                            }
+                        }
+                    </select>
+                    @foreach (var filial in Model.Filiais)
+                    {
+                        @if (filial.Value == Model.Usuario.Filial.Id.ToString())
+                        {
+                            <script>
+                            $("#SelectedFilialId option[value=" + @filial.Value + "]").attr('selected', 'selected');
+                            </script>
+                        }
+                    }
+                    <a class="btn-xs ml-2" asp-controller="Filiais" asp-action="Create">Criar Nova Filial</a>
+                </div>
+                <div pessoaFisica class="form-group">
+                    <label class="control-label font font-weight-bold">Pessoa Física</label>
+                    <select data-val="true" data-val-required="The SelectedPessoaFisicaId field is required." class="custom-select" id="SelectedPessoaFisicaId" name="SelectedPessoaFisicaId">
+                        @foreach (var pessoaFisica in Model.PessoasFisicas)
+                        {
+                            <option value="@pessoaFisica.Value">@pessoaFisica.Text</option>
+                        }
+                    </select>
+                    @foreach (var pessoaFisica in Model.PessoasFisicas)
+                    {
+                        @if (pessoaFisica.Value == Model.Usuario.PessoaFisica.Id.ToString())
+                        {
+                            <script>
+                            $("#SelectedPessoaFisicaId option[value=" + @pessoaFisica.Value + "]").attr('selected', 'selected');
+                            </script>
+                        }
+                    }
+
+                    <div>*Apenas um usuário por pessoa</div>
+                    <a class="btn-xs ml-2" asp-controller="Pessoas" asp-action="CreatePF">Criar Nova Pessoa Física</a>
+                </div>
+                <div email class="form-group">
+                    <label asp-for="Usuario.Email" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Usuario.Email" class="form-control" />
+                    <span asp-validation-for="Usuario.Email" class="text-danger"></span>
+                </div>
+                <div celular class="form-group">
+                    <label asp-for="Usuario.Celular" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Usuario.Celular" class="form-control" />
+                    <span asp-validation-for="Usuario.Celular" class="text-danger"></span>
+                </div>
+                <div senha class="form-group">
+                    <label asp-for="Usuario.Senha" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Usuario.Senha" class="form-control" />
+                    <span asp-validation-for="Usuario.Senha" class="text-danger"></span>
+                </div>
+                <div class="form-group font font-weight-bold">
+                    <div class="checkbox">
+                        <label>
+                            @{
+                                if (Model.Usuario.Ativo == true)
+                                {
+                                    <label for="ativo" style="cursor:pointer; transition:all .3s ease-in-out;" id="lab"><i class="material-icons float-left text-success">check</i> Ativada</label>
+                                    <input id=ativo checked asp-for="Ativo" hidden />
+
+                                }
+                                else
+                                {
+                                    <label for="ativo" style="cursor:pointer;transition:all .3s ease-in-out;" id="lab"><i class="material-icons  float-left text-danger">close</i> Desativada</label>
+                                    <input id=ativo asp-for="Ativo" hidden />
+                                }
+                            }
+
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group text-center m-2">
+                    <input onclick="usuarioJs.updateUsuario(this)" type="submit" value="Salvar" class="btn btn-primary m-1 rounded-pill" />
+                </div>
+            </form>
+            <div class="text-center btns">
+                <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script src="~/js/usuario.js">
+
+    </script>
+    <script src="~/js/ativa.js">
+    </script>
+}

@@ -1,0 +1,71 @@
+﻿@model ContaCorrente
+@{
+    ViewData["Title"] = "Detalhes da Conta Corrente";
+}
+
+<div class="pai-conta">
+    <div class="filho text-center">
+        <h4 class="font font-weight-bold m-1 text-center">Detalhes da Conta Corrente</h4>
+        <hr />
+        <dl class="col-6 offset-3 cor alert-secondary rounded p-2">
+            <dt>
+                Banco
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Banco.Nome)
+            </dd>
+            <dt class="font-weight-light">
+                Agência
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Agencia.PessoaJuridica.Nome)
+            </dd>
+            <dt class="font-weight-light">
+                Filial
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Filial.PessoaJuridica.Nome)
+            </dd>
+            <dt class="font-weight-light">
+                @Html.DisplayNameFor(model => model.DataDeAbertura)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataDeAbertura)
+            </dd>
+            <dt class="font-weight-light">
+                @Html.DisplayNameFor(model => model.DataDeEncerramento)
+            </dt>
+            <dd >
+                @Html.DisplayFor(model => model.DataDeEncerramento)
+            </dd>
+            <dt >
+                Descrição
+            </dt>
+            <dd class="font-weight-light">
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NumeroDaConta)
+            </dt>
+            <dd class="font-weight-light">
+                @Html.DisplayFor(model => model.NumeroDaConta)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DigitoVerificadorCC)
+            </dt>
+            <dd class="font-weight-light">
+                @Html.DisplayFor(model => model.DigitoVerificadorCC)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Saldo)
+            </dt>
+            <dd class="font-weight-light text-success">
+                @Html.DisplayFor(model => model.Saldo)
+            </dd>
+        </dl>
+        <div class="text-center btns">
+            <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary rounded-pill"><i class="material-icons float-left">create</i> Editar</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+﻿@model ContaCorrenteViewModel
+
+@{
+    ViewData["Title"] = "Editar Conta Corrente";
+}
+
+<div class="pai-conta">
+    <div class="filho">
+        <div class="col-md-10 alert-secondary offset-1 cor p-4 rounded">
+            <h4 class="font font-weight-bolder text-center m-1">Editar Conta Corrente</h4>
+            <hr />
+            <form item-id="@Model.ContaCorrente.Id" id='form_id' asp-action="index" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div banco class="form-group">
+                    <label class="control-label font font-weight-bold">Banco</label>
+                    <select data-val="true" data-val-required="The Banco field is required." id="SelectedBancoId" class="custom-select" name="SelectedBancoId" onchange="contaCorrenteJs.reloadEdit(@Model.ContaCorrente.Id)">
+                        @foreach (var banco in Model.Bancos)
+                        {
+                            <option value="@banco.Value">@banco.Text</option>
+                        }
+                    </select>
+                    <script>
+                    $("#SelectedBancoId option[value=" + @Model.BancoIdd + "]").attr('selected', 'selected');
+                    </script>
+                    <a class="btn-xs ml-2" asp-controller="Bancos" asp-action="Create">Criar Novo Banco</a>
+                </div>
+                <div agencia class="form-group">
+                    <label class="control-label font font-weight-bold">Agência</label>
+                    <select data-val="true" data-val-required="The Agencia field is required." class="custom-select" id="SelectedAgenciaId" name="SelectedAgenciaId">
+                        @foreach (var agencia in Model.Agencias)
+                        {
+
+                            var FilialDb = Model.AgenciasDB.Where(f => f.Id.ToString() == agencia.Value).FirstOrDefault();
+
+                            if ((FilialDb.Banco.Id.ToString() == Model.BancoIdd))
+                            {
+                                <option value="@agencia.Value">@agencia.Text</option>
+                            }
+                        }
+                    </select>
+                    @foreach (var agencia in Model.Agencias)
+                    {
+                        @if (agencia.Value == Model.ContaCorrente.Agencia.Id.ToString())
+                        {
+                            <script>
+                            $("#SelectedAgenciaId option[value=" + @agencia.Value + "]").attr('selected', 'selected');
+                            </script>
+                        }
+                    }
+                    <a class="btn-xs ml-2" asp-controller="Agencias" asp-action="Create">Criar Nova Agência</a>
+                </div>
+                <div filial class="form-group">
+                    <label class="control-label font font-weight-bold">Filial</label>
+                    <select data-val="true" data-val-required="The SelectedFilialId field is required." class="custom-select" id="SelectedFilialId" name="SelectedFilialId">
+                        @foreach (var filial in Model.Filiais)
+                        {
+                            <option value="@filial.Value">@filial.Text</option>
+                        }
+                    </select>
+                    @foreach (var filial in Model.Filiais)
+                    {
+                        @if (filial.Value == Model.ContaCorrente.Filial.Id.ToString())
+                        {
+                            <script>
+                            $("#SelectedFilialId option[value=" + @filial.Value + "]").attr('selected', 'selected');
+                            </script>
+                        }
+                    }
+                    <a class="btn-xs ml-2" asp-controller="Filiais" asp-action="Create">Criar Nova Filial</a>
+                </div>
+                <div descricao class="form-group">
+                    <label asp-for="ContaCorrente.Descricao" class="control-label font font-weight-bold">Descrição</label>
+                    <input asp-for="ContaCorrente.Descricao" class="form-control" />
+                    <span asp-validation-for="ContaCorrente.Descricao" class="text-danger"></span>
+                </div>
+                <div numeroDaConta class="form-group">
+                    <label asp-for="ContaCorrente.NumeroDaConta" class="control-label font font-weight-bold"></label>
+                    <input asp-for="ContaCorrente.NumeroDaConta" class="form-control" />
+                    <span asp-validation-for="ContaCorrente.NumeroDaConta" class="text-danger"></span>
+                </div>
+                <div digitoVerificadorCC class="form-group">
+                    <label asp-for="ContaCorrente.DigitoVerificadorCC" class="control-label font font-weight-bold"></label>
+                    <input asp-for="ContaCorrente.DigitoVerificadorCC" class="form-control" />
+                    <span asp-validation-for="ContaCorrente.DigitoVerificadorCC" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center m-2">
+                    <input onclick="contaCorrenteJs.updateContaCorrente(this)" type="submit" value="Salvar" class="btn btn-primary m-1 rounded-pill" />
+                </div>
+            </form>
+            <div class="text-center btns">
+            <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            </div>
+
+        </div>
+      </div>
+    </div>
+
+    @section Scripts
+        {
+        <script src="~/js/contaCorrente.js">
+
+        </script>
+    }

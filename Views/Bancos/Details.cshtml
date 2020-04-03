@@ -1,0 +1,32 @@
+﻿@model Banco
+
+@{
+    ViewData["Title"] = "Detalhes do Banco";
+}
+
+
+<div class="pai-banco">
+    <div class="filho col-4  p-2">
+        <h4 class="font font-weight-bold m-1 text-center">Detalhes do Banco</h4>
+        <hr />
+        <dl class="col-6 offset-3 cor text-white alert-secondary rounded p-2">
+            <dt class="font font-weight-bolder">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd class="font">
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt class="font font-weight-bolder">
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
+            <dd class="font">
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+        </dl>
+        <div class="text-center">
+            
+            <a asp-action="Index" class="btn btn-dark  rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary  rounded-pill"><i class="material-icons float-left">create</i> Editar</a>
+        </div>
+    </div>
+</div>

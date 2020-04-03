@@ -1,0 +1,35 @@
+﻿@model MovimentoBancarioViewModel
+
+@{
+    ViewData["Title"] = "Lançamento Bancário";
+}
+
+
+
+<div class="mov">
+    <div class="rounded filho font font-weight-bold ">
+        <h2 class="font font-weight-bold text-center m-1">Digitar Conta Bancária</h2>
+        <form asp-action="DigitarConta" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group inputs">
+                <label asp-for="ContaCorrente.NumeroDaConta" class="control-label">Número da Conta:</label>
+                <input asp-for="ContaCorrente.NumeroDaConta" name="contaCorrente" class="form-control" />
+                <span asp-validation-for="NumeroDaConta" class="text-danger"></span>
+            </div>
+            <div class="form-group inputs">
+                <label asp-for="ContaCorrente.DigitoVerificadorCC" class="control-label">Digito Verificador:</label>
+                <input asp-for="ContaCorrente.DigitoVerificadorCC" name="DigitoVerificadorCC" class="form-control" />
+                <span asp-validation-for="DigitoVerificadorCC" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center m-2">
+                <input type="submit" value="Confirmar" class="btn btn-primary rounded-pill m-2" />
+            </div>
+        </form>
+        <div class="btns">
+            <a asp-action="InicioLancamento" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar</a>
+        </div>
+    </div>
+</div>
+
+
+

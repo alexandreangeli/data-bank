@@ -1,0 +1,74 @@
+﻿@model Usuario
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h4 class="font font-weight-bolder text-center m-1">Deletar Usuário</h4>
+<hr />
+<div class="col-12">
+    <h3 class="text-center font font-weight-bold">Você tem certeza que quer deletar isso?</h3>
+    <br />
+    <div>
+        <dl class="col-2 offset-5 alert-secondary rounded p-2">
+            <dt>
+                @Html.DisplayNameFor(model => model.PessoaFisica.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PessoaFisica.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Celular)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Celular)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Senha)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Senha)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Empresa.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Empresa.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Filial.PessoaJuridica.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Filial.PessoaJuridica.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </dt>
+            <dd>
+                @{ if (Model.Ativo == false)
+                    {
+                        <label class="font font-weight-bolder"><i class="material-icons text-danger float-left">close</i></label>
+                    }
+                    else
+                    {
+                        <label class="font font-weight-bolder"><i class="material-icons text-success float-left">check</i></label>
+                    }
+                }
+            </dd>
+        </dl>
+        <div class="text-center m-2">
+
+            <form asp-action="Delete">
+                <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" value="Delete" class="btn btn-danger rounded-pill "><i class="material-icons float-left">delete</i>Apagar</button>
+            </form>
+        </div>
+    </div>
+</div>

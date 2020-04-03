@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Início";
+}
+
+<section class="header-site ">
+    <div class="container  font">
+        <div class="row">
+            <div class="col-12 rounded   ">
+                <img src="~/images/logo/teste.png" alt="Alternate Text" style="width:80%;" class="  offset-1" />
+                <h1 class="text-center"> Uma nova solução para seus movimentos bancários!</h1>
+                <br />
+                <p class="text-center">
+                    Esse é um sistema de gerenciamento Bancário onde é possível realizar Transferências Bancárias, Depósitos, Saques e Extrato Bancário,
+                    sendo um sistema rápido e eficiente para proporcinar uma experiência agradável ao usuário e mais produtividade para o mesmo.
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<section class="content-site">
+    <div class="container">
+        <div class="row ro  ">
+
+            <div class="col-12 text-center animadiv  bord rounded float-left m-3 ">
+                <img src="~/images/logo/pig.png" class="desck img-responsive " alt="Alternate Text" />
+                <h1 class="  ">Gerencie Seu Dinheiro</h1>
+                <p class="">Com Rapidez  e inovação,tendo uma equipe de suporte sempre a disposição para melhor lhe atender, com a segurança de servidores locais.</p>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-site code">
+    <div class="container">
+        <div class="row ro  ">
+            <div class="col-12 text-center animadiv  bord rounded float-left m-3 ">
+                <img src="~/images/logo/code.png" class="desck img-responsive " alt="Alternate Text" />
+                <h1 class="  ">Desenvolvida  para ser Moderna!</h1>
+                <p class="">Com as linguagens mais rápidas e modernas disponíveis no mercado, desenvolvida com C#, HTMl5, Javascript, CSS e muito mais. Visando sempre ser Moderna para uma melhor experiência do usuário.</p>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-site ">
+    <div class="container">
+        <div class="row ro  ">
+            <div class="col-12 text-center animadiv bord rounded float-left m-3 ">
+                <img src="~/images/logo/safe.png" class="desck img-responsive " alt="Alternate Text" />
+                <h1 class="  ">Seguro</h1>
+                <p class="">Nossos servidores são protegidos contra ataques físicos.</p>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-site about">
+    <div class="container">
+        <div class="row ro  ">
+            <div class="col-12 text-center animadiv  bord rounded float-left m-3 ">
+                <img src="~/images/logo/about.png" class="desck img-responsive " alt="Alternate Text" />
+                <h1 class="  ">O que Somos?</h1>
+                <p class="">Somos um sistema bancário que tem como objetivo facilitar as transações bancárias da sua empresa.</p>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-site">
+    <div class="container">
+        <div class="row ro  ">
+            <div class="col-12 text-center animadiv bord rounded float-left m-3 ">
+                <img src="~/images/logo/user.png" class="desck img-responsive " alt="Alternate Text" />
+                <h1 class="  ">Vamos Começar!!</h1>
+                <p class="">Se junte a nossos usuários e usufrua dos nossos serviços</p>
+                <a asp-controller="Usuarios" asp-action="Login" class="btn btn-outline-success font-weight-bolder">Começar</a>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script type="text/javascript">
+
+        // Debounce do Lodash
+        debounce = function (func, wait, immediate) {
+            var timeout;
+            return function () {
+                var context = this, args = arguments;
+                var later = function () {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        };
+
+
+        (function () {
+            var animacao = $(".animadiv"), animationClass = 'animadiv-start', offset = $(window).height() *4/4;
+            function animascroll() {
+                var documentTop = $(document).scrollTop();
+                animacao.each(function () {
+
+                    var itemTop = $(this).offset().top;
+                    if (documentTop > itemTop - offset) {
+                        $(this).addClass(animationClass);
+
+                    }
+                    else {
+                        $(this).removeClass(animationClass);
+                    }
+
+
+                });
+            }
+            animascroll();
+            $(document).scroll(debounce(function () {
+                animascroll();
+            }, 100));
+        }());
+    </script>
+}

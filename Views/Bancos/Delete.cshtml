@@ -1,0 +1,36 @@
+﻿@model Banco
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h4 class="font font-weight-bolder text-center m-1">Deletar Banco</h4>
+<hr />
+<div class="col-12">
+    <h3 class="text-center font font-weight-bold">Você tem certeza que quer deletar isso?</h3>
+    <br />
+    <div>
+        <dl class="col-2 offset-5 alert-secondary rounded p-2">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd class="text-danger font">
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
+            <dd class="text-danger font">
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+        </dl>
+        <div class="text-center m-2">
+
+            <form asp-action="Delete">
+                <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" value="Delete" class="btn btn-danger rounded-pill "><i class="material-icons float-left">delete</i>Apagar</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@model MovimentoBancarioViewModel;
+@{
+    ViewData["Title"] = "Início";
+}
+
+<div class="row pai-inicio">
+    <div class="alert-secondary rounded filho-login">
+        <h4 class="font font-weight-bold m-2 text-center">Bem-vindo(a) @Model.Usuario.PessoaFisica.Nome</h4>
+        <form asp-action="#" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @if (Model.Usuario.Email != "admin")
+            {
+                <h2>Seus dados:</h2>
+                <p>Empresa: @Model.Usuario.Empresa.Nome</p>
+                <p>Filial: @Model.Usuario.Filial.PessoaJuridica.Nome</p>
+                @if (Model.Usuario.PostosDeCaixa.Where(p => p.Ativo == true).Any())
+                {
+                    <h4>Suas permissões de acesso são:</h4>
+                    @foreach (var postoDeCaixa in Model.Usuario.PostosDeCaixa)
+                    {
+                        if (postoDeCaixa.ContaCorrente.Ativo == true)
+                        {
+                            <dl class="dl-horizontal">
+                                <dt>Conta Corrente</dt>
+                                <dd>@postoDeCaixa.ContaCorrente.NumeroDaConta</dd>
+                            </dl>
+                        }
+                    }
+                }
+            }
+            else
+            {
+                       
+            }
+            <div class="form-group">
+                <a asp-controller="MovimentoBancario" asp-action="InicioLancamento" class="btn btn-success rounded-pill font font-weight-bolder m-1">Novo Lançamento</a>
+            </div>
+            <div class="form-group">
+                <a asp-controller="ExtratoBancario" asp-action="InicioExtrato" class="btn btn-info rounded-pill font font-weight-bolder m-1">Extrato Bancário</a>
+            </div>
+            <div class="form-group">
+                <a asp-controller="MovimentoBancario" asp-action="EstornoLancamento" class="btn btn-danger rounded-pill font font-weight-bolder m-1">Estorno de Lançamento</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+

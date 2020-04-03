@@ -1,0 +1,52 @@
+﻿@model MovimentoBancario
+
+@{
+    ViewData["Title"] = "Confirmar Estorno";
+}
+
+
+
+<div class=" pai-estorno">
+
+    <div class=" filho">
+        <h2 class="font font-weight-bold text-center m-1">Estornar Movimento</h2>
+        <hr />
+        <h3 class="text-center font font-weight-bold">Você tem certeza que quer estornar esse movimento?</h3>
+        <br />
+        <div class="fundos rounded">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Data)
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.Data)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Tipo)
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.Tipo)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Valor)
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.Valor)
+                </dd>
+                <dt>
+                    Usuário
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.Usuario)
+                </dd>
+            </dl>
+        </div>
+        <div class="text-center m-2">
+
+            <form>
+                <a asp-action="EstornoLancamento" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar</a>
+                <a asp-action="EstornoConfirmado" asp-route-contacorrenteid="@Model.ContaCorrente.Id" asp-route-movimentoid="@Model.Id" class="btn btn-danger rounded-pill "><i class="material-icons float-left">delete</i>Estornar</a>
+            </form>
+        </div>
+    </div>
+</div>

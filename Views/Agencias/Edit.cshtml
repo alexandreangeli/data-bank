@@ -1,0 +1,81 @@
+﻿@model AgenciaViewModel
+
+@{
+    ViewData["Title"] = "Editar Agência";
+}
+<div class="pai-agencia">
+    <div class="filho">
+        <div class="col-md-10 alert-secondary offset-1 cor p-4 rounded">
+
+            <h4 class="font font-weight-bolder text-center m-1">Editar Agência</h4>
+            <hr />
+            <form item-id="@Model.Agencia.Id" id='form_id' asp-action="index" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div banco class="form-group">
+                    <label class="control-label font font-weight-bold">Banco</label>
+                    <select data-val="true" data-val-required="The Banco field is required." class="form-control" id="SelectedBancoId" name="SelectedBancoId">
+                        @foreach (var banco in Model.Bancos)
+                        {
+                            <option value="@banco.Value">@banco.Text</option>
+                        }
+                    </select>
+                    @foreach (var banco in Model.Bancos)
+                    {
+                        @if (banco.Value == Model.Agencia.Banco.Id.ToString())
+                        {
+                            <script>
+                            $("#SelectedBancoId option[value=" + @banco.Value + "]").attr('selected', 'selected');
+                            </script>
+                        }
+                    }
+                    <a class="btn-xs ml-2" asp-controller="Bancos" asp-action="Create">Criar Novo Banco</a>
+                </div>
+                <div pessoaJuridica class="form-group">
+                    <label class="control-label font font-weight-bold">Pessoa Jurídica</label>
+                    <select data-val="true" data-val-required="The Pessoa Juridica field is required." class="form-control" id="SelectedPessoaJuridicaId" name="SelectedPessoaJuridicaId">
+                        @foreach (var pessoaJuridica in Model.PessoasJuridicas)
+                        {
+                            <option value="@pessoaJuridica.Value">@pessoaJuridica.Text</option>
+                        }
+                    </select>
+                    @foreach (var pessoaJuridica in Model.PessoasJuridicas)
+                    {
+                        @if (pessoaJuridica.Value == Model.Agencia.PessoaJuridica.Id.ToString())
+                        {
+                            <script>
+                            $("#SelectedPessoaJuridicaId option[value=" + @pessoaJuridica.Value + "]").attr('selected', 'selected');
+                            </script>
+                        }
+                    }
+                    <div>*Apenas uma agência ou filial por pessoa jurídica</div>
+                    <a class="btn-xs ml-2" asp-controller="Pessoas" asp-action="CreatePJ">Criar Nova Pessoa Jurídica</a>
+
+                </div>
+                <div codigo class="form-group font font-weight-bold">
+                    <label asp-for="Agencia.Codigo" class="control-label font font-weight-bold">Código</label>
+                    <input asp-for="Agencia.Codigo" class="form-control" />
+                    <span asp-validation-for="Agencia.Codigo" class="text-danger"></span>
+                </div>
+                <div digitoVerificador class="form-group font font-weight-bold">
+                    <label asp-for="Agencia.DigitoVerificador" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Agencia.DigitoVerificador" class="form-control" />
+                    <span asp-validation-for="Agencia.DigitoVerificador" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center m-2">
+                    <input onclick="bancoJs.updateBanco(this)" type="submit" value="Salvar" class="btn btn-primary m-1 rounded-pill" />
+                </div>
+            </form>
+            <div class="text-center btns">
+                <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script src="~/js/agencia.js">
+
+    </script>
+}

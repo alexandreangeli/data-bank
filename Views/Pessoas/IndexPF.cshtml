@@ -1,0 +1,80 @@
+﻿@model IEnumerable<PessoaFisica>
+
+@{
+    ViewData["Title"] = "Pessoas Fisicas";
+}
+
+<div class="pai-pessoa">
+    <div class="filho btable-hover table-secondary col-10 ">
+        <h2 class="font text-center m-2 font-weight-bold">Pessoas Físicas</h2>
+        <hr />
+        <table class="table table-dark rounded font font-we btable-hover table-secondary table-responsive-md table-responsive-sm col-md-12 table-responsive-lg">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CPF)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cidade)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UF)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pais)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ativo)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CPF)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cidade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UF)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pais)
+                        </td>
+                        <td>
+                            @{ if (item.Ativo == false)
+                                {
+                                    <i class="material-icons text-danger">close</i>
+
+                                }
+                                else
+                                {
+                                    <i class="material-icons text-center text-success">check</i>
+
+                                }
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="DetailsPF" asp-route-id="@item.Id" class="btn btn-outline-primary rounded-pill font m-1 float-right ">Detalhes</a>
+                            <a asp-action="EditPF" asp-route-id="@item.Id" class="btn btn-outline-success rounded-pill m-1 float-right ">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p class="text-center btns">
+            <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar</a>
+            <a asp-action="CreatePF" class="btn btn-primary rounded-pill text-decoration-none add"><i class="material-icons float-left ">add</i>Adicionar</a>
+        </p>
+    </div>
+</div>

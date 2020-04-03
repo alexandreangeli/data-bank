@@ -1,0 +1,87 @@
+﻿@model ContaCorrenteViewModel
+
+@{
+    ViewData["Title"] = "Adicionar Conta Corrente";
+}
+
+<div class="pai-conta">
+    <div class="filho ">
+        <div class="col-md-10 offset-1  cor p-4 alert-secondary  rounded ">
+            <h4 class="font font-weight-bold m-1 text-center">Nova Conta Corrente</h4>
+            <hr />
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group form-group">
+                    <label class="control-label font font-weight-bold">Banco</label>
+                    <select data-val="true" data-val-required="The Conta Corrente field is required." class="custom-select" id="SelectedBancoId" name="SelectedBancoId" onchange="contaCorrenteJs.reloadCreate()">
+                        @foreach (var banco in Model.Bancos)
+                        {
+                            <option value="@banco.Value">@banco.Text</option>
+                        }
+                    </select>
+                    <script>
+                            $("#SelectedBancoId option[value=" + @Model.BancoIdd + "]").attr('selected', 'selected');
+                    </script>
+                    <a class="btn-xs ml-2" asp-controller="Bancos" asp-action="Create">Criar Novo Banco</a>
+
+                </div>
+                <div class="form-group form-group">
+                    <label class="control-label font font-weight-bold">Agência</label>
+                    <select data-val="true" data-val-required="The Agencia field is required." class="custom-select" id="SelectedAgenciaId" name="SelectedAgenciaId">
+                        @foreach (var agencia in Model.Agencias)
+                        {
+
+                            var AgenciaDb = Model.AgenciasDB.Where(f => f.Id.ToString() == agencia.Value).FirstOrDefault();
+
+                            if ((AgenciaDb.Banco.Id.ToString() == Model.BancoIdd))
+                            {
+                                <option value="@agencia.Value">@agencia.Text</option>
+                            }
+                        }
+                    </select>
+                    <a class="btn-xs ml-2" asp-controller="Agencias" asp-action="Create">Criar Nova Agência</a>
+                </div>
+                <div pessoaFisica class="form-group form-group">
+                    <label class="control-label font font-weight-bold">Filial</label>
+                    <select data-val="true" data-val-required="The Filial field is required." class="custom-select" id="SelectedFilialId" name="SelectedFilialId">
+                        @foreach (var filial in Model.Filiais)
+                        {
+                            <option value="@filial.Value">@filial.Text</option>
+                        }
+                    </select>
+                    <a class="btn-xs ml-2" asp-controller="Filiais" asp-action="Create">Criar Nova Filial</a>
+                </div>
+                <div class="form-group form-group font font-weight-bold">
+                    <label asp-for="Descricao" class="control-label">Descrição</label>
+                    <input asp-for="Descricao" class="form-control" />
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+                <div class="form-group form-group font font-weight-bold">
+                    <label asp-for="NumeroDaConta" class="control-label">Número Da Conta</label>
+                    <input asp-for="NumeroDaConta" value="" class="form-control" />
+                    <span asp-validation-for="NumeroDaConta" class="text-danger"></span>
+                </div>
+                <div class="form-group form-group font font-weight-bold">
+                    <label asp-for="DigitoVerificadorCC" class="control-label"></label>
+                    <input asp-for="DigitoVerificadorCC" class="form-control" />
+                    <span asp-validation-for="DigitoVerificadorCC" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center m-2">
+                    <input type="submit" value="Criar" class="btn btn-primary rounded-pill m-1" />
+                </div>
+            </form>
+            <div class="text-center btns">
+            <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts
+    {
+    <script src="~/js/contaCorrente.js">
+
+    </script>
+}

@@ -1,0 +1,126 @@
+﻿@model MovimentoBancarioViewModel
+
+@{
+    ViewData["Title"] = "Confirmar Movimento";
+}
+
+<div class="mov">
+
+    @if (Model.MovimentoBancario.Tipo == "saque" || Model.MovimentoBancario.Tipo == "deposito")
+    {
+        <div class="filho">
+            <div class="col-md-6  rounded font offset-3 cor">
+                <h2 class="font font-weight-bold text-center m-1">Confirmar</h2>
+                <hr />
+                <dl>
+                    <dt class="font-weight-bold">
+                        Usuário
+                    </dt>
+                    <dd class="font-weight-light">
+                        @Html.DisplayFor(model => model.MovimentoBancario.Usuario)
+                    </dd>
+                    <dt class="">
+                        @Html.DisplayNameFor(model => model.MovimentoBancario.ContaCorrente.NumeroDaConta)
+                    </dt>
+                    <dd class="font-weight-light">
+                        @Html.DisplayFor(model => model.MovimentoBancario.ContaCorrente.NumeroDaConta) @Html.DisplayFor(model => model.MovimentoBancario.ContaCorrente.DigitoVerificadorCC)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MovimentoBancario.Tipo)
+                    </dt>
+                    <dd class="font-weight-light">
+                        @if (Model.MovimentoBancario.Tipo == "saque")
+                        {
+                            @:Saque
+                        }
+                        else
+                        {
+                            @:Depósito
+                        }
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MovimentoBancario.Valor)
+                    </dt>
+                    <dd class="font-weight-light">
+                        @Html.DisplayFor(model => model.MovimentoBancario.Valor)
+                    </dd>
+                    <dt>
+                        Cheque ou Dinheiro
+                    </dt>
+                    <dd class="font-weight-light">
+                        @if (Model.MovimentoBancario.Cheque == true)
+                        {
+                            @:Cheque
+                        }
+                        else
+                        {
+                            @:Dinheiro
+                        }
+                    </dd>
+                </dl>
+                <form asp-action="MovimentoConfirmado" class="text-center">
+                    <input type="hidden" value="@Model.ContaCorrente.Id" name="ContaCorrenteId" />
+                    <input type="hidden" value="@Model.MovimentoBancario.Valor" name="Valor" />
+                    <input type="hidden" value="@Model.MovimentoBancario.Tipo" name="tipo" />
+                    <input asp-for="MovimentoBancario.Cheque" type="hidden" value="@Model.MovimentoBancario.Cheque" name="cheque" />
+
+                    <input type="submit" value="Confirmar" class="btn btn-primary rounded-pill m-2" />
+                </form>
+                <div class="text-center btns ">
+                    <a asp-action="SelecionarConta" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar</a>
+                </div>
+
+            </div>
+        </div>
+
+    }
+
+    @if (Model.MovimentoBancario.Tipo == "transferencia")
+    {
+        <div class="filho">
+            <div class="col-md-6 rounded font offset-3 cor alert-secondary">
+                <dl>
+                    <dt class="font-weight-bold">
+                        Usuário
+                    </dt>
+                    <dd class="font-weight-light">
+                        @Html.DisplayFor(model => model.MovimentoBancario.Usuario)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MovimentoBancario.ContaCorrente.NumeroDaConta)
+                    </dt>
+                    <dd class="font-weight-light">
+                        @Html.DisplayFor(model => model.MovimentoBancario.ContaCorrente.NumeroDaConta)
+                    </dd>
+                    <dt>
+                        Conta Destino
+                    </dt>
+                    <dd class="font-weight-light">
+                        @Html.DisplayFor(model => model.MovimentoBancario.TransferenciaGet.NumeroDaConta)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MovimentoBancario.Tipo)
+                    </dt>
+                    <dd class="font-weight-light">
+                        Transferência
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MovimentoBancario.Valor)
+                    </dt>
+                    <dd class="font-weight-light">
+                        @Html.DisplayFor(model => model.MovimentoBancario.Valor)
+                    </dd>
+                </dl>
+                <form asp-action="MovimentoConfirmado" class="text-center">
+                    <input type="hidden" value="@Model.ContaCorrente.Id" name="ContaCorrenteId" />
+                    <input type="hidden" value="@Model.MovimentoBancario.TransferenciaGet.Id" name="ContaCorrenteDestinoId" />
+                    <input type="hidden" value="@Model.MovimentoBancario.Valor" name="Valor" />
+                    <input type="hidden" value="@Model.MovimentoBancario.Tipo" name="tipo" />
+                    <input type="submit" value="Confirmar" class="btn btn-primary rounded-pill m-2" />
+                </form>
+
+            </div>
+        </div>
+    }
+
+</div>

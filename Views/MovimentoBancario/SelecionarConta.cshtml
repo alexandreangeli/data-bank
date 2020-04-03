@@ -1,0 +1,106 @@
+﻿@model MovimentoBancarioViewModel
+
+@{
+    ViewData["Title"] = "Lançamento Bancário";
+}
+
+
+<div class="mov">
+    <div class="rounded font font-weight-bold filho ">
+        <h2 class="font font-weight-bold text-center m-1">Selecionar Conta</h2>
+        <form asp-action="SelecionarConta" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label font font-weight-bold">Conta Corrente</label>
+                @if (Model.Usuario.Email == "admin")
+                {
+                    <div banco class="form-group inputs">
+                        Banco
+                        <select data-val="true" data-val-required="The Banco field is required." class=" form-control" id="SelectedBancoId" name="SelectedBancoId" onchange="reloadSelecionar()">
+                            @foreach (var banco in Model.Bancos)
+                            {
+                                <option value="@banco.Id">@banco.Nome</option>
+                            }
+                        </select>
+                        <script>
+                        $("#SelectedBancoId option[value=" + @Model.BancoIdd + "]").attr('selected', 'selected');
+                        </script>
+                    </div>
+                    <div filial class="form-group inputs">
+                        Filial
+                        <select data-val="true" data-val-required="The Filial field is required." class="form-control" id="SelectedFilialId" name="SelectedFilialId" onchange="reloadSelecionar()">
+                            @foreach (var filial in Model.Filiais)
+                            {
+                                <option value="@filial.Id">@filial.PessoaJuridica.Nome</option>
+                            }
+                        </select>
+                        <script>
+                        $("#SelectedFilialId option[value=" + @Model.FilialIdd + "]").attr('selected', 'selected');
+                        </script>
+                    </div>
+                    <div contaCorrente class="form-group inputs">
+                        Conta Corrente
+                        <select data-val="true" data-val-required="The ContaCorrente field is required." class="form-control" id="ContaCorrenteId" name="ContaCorrenteId">
+                            @foreach (var contaCorrente in Model.ContasCorrentes)
+                            {
+                                var ContaCorrenteDb = Model.ContasCorrentesDB.Where(c => c.Id == contaCorrente.Id).FirstOrDefault();
+
+                                if ((ContaCorrenteDb.Filial.Id == Model.FilialIdd && ContaCorrenteDb.Banco.Id == Model.BancoIdd && ContaCorrenteDb.Ativo == true))
+                                {
+                                    <option value="@contaCorrente.Id">@contaCorrente.NumeroDaConta @contaCorrente.DigitoVerificadorCC</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                }
+                else
+                {<div class="inputs form-group">
+                    <select data-val="true" data-val-required="The Conta Corrente field is required." id="ContaCorrenteId" class="form-control" name="ContaCorrenteId">
+
+                        @foreach (var postoDeCaixa in Model.Usuario.PostosDeCaixa)
+                        {
+                            if (postoDeCaixa.Ativo == true)
+                            {
+                                <option value="@postoDeCaixa.ContaCorrente.Id">@postoDeCaixa.ContaCorrente.NumeroDaConta @postoDeCaixa.ContaCorrente.DigitoVerificadorCC</option>
+                            }
+                        }
+                        }
+                    </select>
+                </div>
+                }
+            </div>
+            <div class="form-group text-center m-2">
+                <input type="submit" value="Confirmar" class="btn btn-primary rounded-pill m-2" />
+            </div>
+        </form>
+        <div class="btns">
+            <a asp-action="InicioLancamento" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar</a>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        function reloadSelecionar() {
+            var e = document.getElementById("SelectedBancoId");
+            var f = document.getElementById("SelectedFilialId");
+
+            var strUser1 = e.options[e.selectedIndex].value;
+            var strUser2 = f.options[f.selectedIndex].value;
+            $.ajax({
+                url: '/movimentobancario/selecionarconta',
+                type: 'GET',
+                data: {
+                    "bancoId": strUser1,
+                    "filialId": strUser2
+                }
+            }).done(function (response) {
+                location.replace('/MovimentoBancario/SelecionarConta?bancoId=' + strUser1 + '&filialId=' + strUser2)
+            });
+        }
+
+    </script>
+}
+

@@ -1,0 +1,104 @@
+﻿@model PostoDeCaixaViewModel
+
+@{
+    ViewData["Title"] = "Adicionar Posto de Caixa";
+}
+
+<div class="pai-posto">
+    <div class="filho ">
+        <div class=" col-10 cor offset-1  rounded ">
+            <h4 class="font font-weight-bold m-1 text-center">Novo Posto de Caixa</h4>
+            <hr />
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div filial class="form-group">
+                    <label class="control-label font font-weight-bold">Filial</label>
+                    <select data-val="true" data-val-required="The SelectedFilialId field is required." id="SelectedFilialId" class="custom-select" name="SelectedFilialId" onchange="postoDeCaixaJs.reloadCreate()">
+                        @foreach (var filial in Model.Filiais)
+                        {
+                            <option value="@filial.Value">@filial.Text</option>
+                        }
+                    </select>
+
+                    <script>
+                    $("#SelectedFilialId option[value=" + @Model.FilialIdd + "]").attr('selected', 'selected');
+                    </script>
+
+                    <a class="btn-xs ml-2" asp-controller="Filiais" asp-action="Create">Criar Nova Filial</a>
+                </div>
+                <div usuario class="form-group">
+                    <label class="control-label font font-weight-bold">Usuário</label>
+                    <select data-val="true" data-val-required="The SelectedUsuarioId field is required." class="custom-select" id="SelectedUsuarioId" name="SelectedUsuarioId" onchange="postoDeCaixaJs.reloadCreate()">
+                        @foreach (var usuario in Model.Usuarios)
+                        {
+                            var UsuarioDb = Model.UsuariosDB.Where(f => f.Ativo == true).Where(f => f.Ativo == true).Where(f => f.Id.ToString() == usuario.Value).FirstOrDefault();
+
+                            if ((UsuarioDb.Filial.Id.ToString() == Model.FilialIdd))
+                            {
+                                <option value="@usuario.Value">@usuario.Text</option>
+                            }
+                        }
+                    </select>
+
+                    <script>
+                        $("#SelectedUsuarioId option[value=" + @Model.UsuarioIdd + "]").attr('selected', 'selected');
+                    </script>
+
+                    <a class="btn-xs ml-2" asp-controller="Usuarios" asp-action="Create">Criar Novo Usuário</a>
+                </div>
+                <div contaCorrente class="form-group">
+                    <label class="control-label font font-weight-bold">Conta Corrente</label>
+                    <select data-val="true" data-val-required="The SelectedContaCorrenteId field is required." class="custom-select" id="SelectedContaCorrenteId" name="SelectedContaCorrenteId">
+                        @foreach (var contaCorrente in Model.ContasCorrentesDB)
+                        {
+                            var ContaCorrenteDb = Model.ContasCorrentesDB.Where(f => f.Id == contaCorrente.Id).FirstOrDefault();
+
+                            if ((ContaCorrenteDb.Filial.Id.ToString() == Model.FilialIdd && !contaCorrente.PostosDeCaixa.Where(p => p.Usuario.Id.ToString() == Model.UsuarioIdd).Any()))
+                            {
+                                <option value="@contaCorrente.Id">@contaCorrente.NumeroDaConta @contaCorrente.DigitoVerificadorCC</option>
+                            }
+                        }
+                    </select>
+                    <a class="btn-xs ml-2" asp-controller="ContasCorrentes" asp-action="Create">Criar Nova Conta Corrente</a>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+
+                </div>
+                <div ativo class="form-group font font-weight-bold">
+                    <div class="checkbox">
+                        <label>
+
+
+                            <label for="ativo" style="cursor:pointer; transition:all .3s ease-in-out;" id="lab"><i class="material-icons float-left text-success">check</i> Ativada</label>
+                            <input id=ativo checked asp-for="Ativo" hidden />
+
+
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group text-center m-2">
+                    <input type="submit" value="Criar" class="btn btn-primary rounded-pill m-1" />
+                </div>
+            </form>
+            <div class="text-center btns">
+                <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts
+    {
+    <script src="~/js/postoDeCaixa.js">
+
+    </script>
+
+
+    <script src="~/js/ativa.js"></script>
+}

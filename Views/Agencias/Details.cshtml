@@ -1,0 +1,55 @@
+﻿@model Agencia
+
+@{
+    ViewData["Title"] = "Detalhes da Agência";
+}
+
+<div class="pai-agencia">
+    <div class="filho">
+
+        <h4 class="font font-weight-bold m-1 text-center">Detalhes da Agência</h4>
+        <hr />
+        <dl class="col-6 font offset-3  cor rounded p-2">
+            <dt>
+                Banco
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Banco.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PessoaJuridica.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PessoaJuridica.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PessoaJuridica.CNPJ)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PessoaJuridica.CNPJ)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PessoaJuridica.NumeroMunicipal)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PessoaJuridica.NumeroMunicipal)
+            </dd>
+            <dt>
+                Código
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DigitoVerificador)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DigitoVerificador)
+            </dd>
+        </dl>
+        <div class="text-center btns">
+            <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary rounded-pill"><i class="material-icons float-left">create</i> Editar</a>
+        </div>
+    </div>
+</div>

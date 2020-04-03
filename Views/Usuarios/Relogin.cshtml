@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="log">
+    <div class=" rounded filho-login">
+        <h1 class="text-center Texto font-weight-bolder m-3">Login</h1>
+        <form asp-controller="Usuarios" asp-action="Login" method="post">
+            <input type="hidden" value="@Model" name="returnUrl" />
+            <div class="form-group ">
+                <label class="control-label">E-Mail</label>
+                <input type="text" name="email" placeholder="Email" class="form-control" />
+            </div>
+
+            <div class="form-group ">
+                <label class="control-label">Senha</label>
+                <input type="password" name="password" placeholder="Senha" class="form-control" />
+            </div>
+            <span class="text-danger font-weight-bolder">Email ou Senha Incorretos</span>
+            <div>
+                <button type="submit" class="btn btn-dark m-2 font-weight-bold">Logar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

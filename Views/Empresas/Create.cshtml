@@ -1,0 +1,49 @@
+﻿@model Empresa
+
+@{
+    ViewData["Title"] = "Adicionar Empresa";
+}
+
+
+<div class="pai-empresa">
+    <div class="filho">
+        <div class="col-md-6 col-md-6 offset-3 cor font font-weight-bold alert-secondary  p-4  rounded">
+            <h4 class="font font-weight-bold m-2 text-center">Nova Empresa</h4>
+            <hr />
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" name="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sigla" class="control-label"></label>
+                    <input asp-for="Sigla" class="form-control" />
+                    <span asp-validation-for="Sigla" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <label for="ativo" style="cursor:pointer; transition:all .3s ease-in-out;" id="lab"><i class="material-icons float-left text-success">check</i> Ativada</label>
+                            <input id=ativo checked asp-for="Ativo" hidden />
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group text-center m-2">
+                    <input type="submit" value="Criar" class="btn btn-primary rounded-pill m-1" />
+                </div>
+            </form>
+            <div class="text-center  btns ">
+                <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="~/js/ativa.js">
+
+    </script>
+}

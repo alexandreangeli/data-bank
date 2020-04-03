@@ -1,0 +1,45 @@
+﻿@model BancoDataCoper.Models.Empresa
+
+@{
+    ViewData["Title"] = "Detalhes da Empresa";
+}
+
+<div class="pai-empresa">
+    <div class="filho text-center">
+        <dl class="col-6 offset-3 cor rounded p-2">
+            <h4 class="font font-weight-bold m-1 text-center">Detalhes da Empresa</h4>
+            <hr />
+            <dt class="font font-weight-bold ">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt class="font font-weight-bold ">
+                @Html.DisplayNameFor(model => model.Sigla)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Sigla)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </dt>
+            <dd>
+                @{ if (Model.Ativo == false)
+                    {
+                        <label class="font font-weight-bolder"><i class="material-icons text-danger float-left">close</i>Desativada</label>
+                    }
+                    else
+                    {
+                        <label class="font font-weight-bolder"><i class="material-icons text-success float-left">check</i>Ativada</label>
+                    }
+                }
+            </dd>
+        </dl>
+        <div class="text-center btns">
+            <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary rounded-pill"><i class="material-icons float-left">create</i>Editar</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model Empresa
+
+@{
+    ViewData["Title"] = "Editar Empresas";
+}
+
+<div class="pai-empresa">
+    <div class="filho">
+        <div class="col-md-4 cor font font-weight-bold offset-4  rounded">
+            <h4 class="font font-weight-bolder text-center m-1">Editar Empresa</h4>
+            <hr />
+            <form item-id="@Model.Id" id='form_id' asp-action="index" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div nome class="form-group">
+                    <label asp-for="Nome" class="control-label font font-weight-bold m-1"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div sigla class="form-group">
+                    <label asp-for="Sigla" class="control-label font font-weight-bold m-1"></label>
+                    <input asp-for="Sigla" class="form-control" />
+                    <span asp-validation-for="Sigla" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            @{
+                                if (Model.Ativo == true)
+                                {
+                                    <label for="ativo" style="cursor:pointer; transition:all .3s ease-in-out;" id="lab"><i class="material-icons float-left text-success">check</i> Ativada</label>
+                                    <input id=ativo asp-for="Ativo" hidden />
+                                }
+                                else
+                                {
+                                    <label for="ativo" style="cursor:pointer;transition:all .3s ease-in-out;" id="lab"><i class="material-icons  float-left text-danger">close</i> Desativada</label>
+                                    <input id=ativo asp-for="Ativo" hidden />
+                                }
+                            }
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group text-center m-2">
+                    <input onclick="empresaJs.updateEmpresa(this)" type="submit" value="Salvar" class="btn btn-primary rounded-pill m-1" />
+                </div>
+            </form>
+
+            <div class="text-center btns ">
+            <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script src="~/js/empresa.js">
+    </script>
+
+    <script src="~/js/ativa.js">
+    </script>
+}

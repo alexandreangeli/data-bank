@@ -1,0 +1,80 @@
+﻿@model ContaCorrente
+
+@{
+    ViewData["Title"] = "Desativar Conta Corrente";
+}
+<div class="pai-conta">
+    <div class="filho text-center">
+
+        <h4 class="font font-weight-bolder text-center m-1">Desativar Conta Corrente</h4>
+        <hr />
+        <h3 class="text-center font font-weight-bold">Você tem certeza que deseja desativar a conta?</h3>
+        <br />
+        <div>
+            <dl class="col-6 offset-3  cor alert-secondary rounded p-2">
+                <dt>
+                    Banco
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.Banco.Nome)
+                </dd>
+                <dt>
+                    Agência
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.Agencia.PessoaJuridica.Nome)
+                </dd>
+                <dt>
+                    Filial
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.Filial.PessoaJuridica.Nome)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DataDeAbertura)
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.DataDeAbertura)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DataDeEncerramento)
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.DataDeEncerramento)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.Descricao)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.NumeroDaConta)
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.NumeroDaConta)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DigitoVerificadorCC)
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.DigitoVerificadorCC)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Saldo)
+                </dt>
+                <dd class="text-danger font">
+                    @Html.DisplayFor(model => model.Saldo)
+                </dd>
+            </dl>
+            <div class="text-center btns">
+
+                <form asp-action="Deactivate" class="text-center m-2">
+                    <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" value="Delete" class="btn btn-danger rounded-pill"><i class="material-icons float-left">delete</i>Desativar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

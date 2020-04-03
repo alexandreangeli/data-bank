@@ -1,0 +1,47 @@
+﻿@model string
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+@if (!string.IsNullOrEmpty(User.Identity.Name))
+{
+    <style>
+    </style>
+    <div class="log">
+        <div class=" rounde mt-5 filho-login">
+            <br />
+            <br />
+            <h1>Você já está Logado.</h1>
+            <br />
+            <br />
+        </div>
+    </div>
+
+}
+else
+{
+    <style>
+    </style>
+    <div class="log">
+        <div class=" rounde mt-5 filho-login">
+            <h1 class="text-center Texto font-weight-bolder m-3">Login</h1>
+            <form asp-controller="Usuarios" asp-action="Login" method="post">
+                <input type="hidden" value="@Model" name="returnUrl" />
+                <div class="form-group">
+                    <label class="control-label">E-Mail</label>
+                    <input type="text" name="email" placeholder="Email" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Senha</label>
+                    <input type="password" name="password" placeholder="Senha" class="form-control" />
+                </div>
+                <div class="text-center">
+
+                    <button type="submit" class="btn btn-dark m-2 font-weight-bold ">Logar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}

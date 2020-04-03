@@ -1,0 +1,110 @@
+﻿@model PessoaJuridica
+
+@{
+    ViewData["Title"] = "Detalhes da Pessoa Jurídica";
+}
+
+<div class="pai-empresa font text-center">
+    <div class="filho">
+        <h4 class="font font-weight-bold m-1 text-center">Detalhes da Pessoa Júridica</h4>
+        <hr />
+        <h2 class="text-center">Pessoa:</h2>
+        <dl class="col-6 font offset-3 alert-secondary cor rounded p-2">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CNPJ)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CNPJ)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NumeroMunicipal)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NumeroMunicipal)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </dt>
+            <dd>
+                @{ if (Model.Ativo == false)
+                    {
+                        <label class="font font-weight-bolder"><i class="material-icons text-danger float-left">close</i>Desativada</label>
+
+                    }
+                    else
+                    {
+                        <label class="font font-weight-bolder"><i class="material-icons text-success float-left">check</i>Ativada</label>
+                    }
+                }
+            </dd>
+        </dl>
+        <h2 class="text-center">Endereço:</h2>
+        <dl class="col-6 font offset-3 alert-secondary cor rounded p-2">
+            <dt>
+                @Html.DisplayNameFor(model => model.CEP)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CEP)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Rua)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Rua)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NumeroEndereco)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NumeroEndereco)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Complemento)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Complemento)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Bairro)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Bairro)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Cidade)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Cidade)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UF)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UF)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Pais)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Pais)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Observacao)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Observacao)
+            </dd>
+        </dl>
+        <div class="text-center btns">
+            <a asp-action="IndexPJ" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+
+            <a asp-action="EditPJ" asp-route-id="@Model.Id" class="btn btn-primary rounded-pill"><i class="material-icons float-left">create</i> Editar</a>
+        </div>
+    </div>
+</div>

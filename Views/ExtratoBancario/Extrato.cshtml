@@ -1,0 +1,191 @@
+﻿@model ExtratoBancarioViewModel;
+
+@{
+    ViewData["Title"] = "Extrato Bancário";
+}
+
+<head>
+    <style type="text/css">
+        table {
+            font-family: 'Times New Roman';
+        }
+
+        #Titulo {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #Subtitulo {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="col-12  mt-5 table-bordered ">    
+    <table style="width:100%" class="table-bordered borda ">
+        <tr class="borda">
+            <td class="borda">
+                <b>Emissão:</b> @DateTime.Now - Página 01 de 01
+            </td>
+            <td class="borda">
+                <b>Usuário:</b> @Model.Usuario.PessoaFisica.Nome
+            </td>
+        </tr>
+    </table>
+    <table style="width:100%" class="table-bordered borda">
+        <tr>
+            <td>
+                <h1 id="Titulo">Extrato de Movimento Bancário</h1>
+            </td>
+        </tr>
+    </table>
+    <table style="width:100%" class="table-bordered borda">
+        <tr>
+            <td style="width:50%">
+                <p><b>Empresa:</b> @Model.Usuario.Filial.Empresa.Nome
+            </td>
+
+            <td style="width:50%">
+                <p><b>Banco:</b> @Model.ContaCorrente.Banco.Codigo - @Model.ContaCorrente.Banco.Nome</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p><b>Filial:</b> @Model.Usuario.Filial.PessoaJuridica.Nome </p>
+            </td>
+
+            <td>
+                <p><b>Conta:</b> @Model.ContaCorrente.NumeroDaConta - @Model.ContaCorrente.DigitoVerificadorCC</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Período:</b> @Model.DataInicial.ToShortDateString() até @Model.DataFinal.ToShortDateString()
+            </td>
+            <td>
+                <b>Local:</b> @Model.Usuario.Filial.PessoaJuridica.Cidade, @Model.Usuario.Filial.PessoaJuridica.UF, @Model.Usuario.Filial.PessoaJuridica.Pais
+            </td>
+        </tr>
+    </table>
+    <table style="width:100%" class="table-bordered borda">
+        <tr>
+            <td style="width:16%">-</td>
+            <td style="width:11%">-</td>
+            <td style="width:15%">-</td>
+            <td style="width:8%">-</td>
+            <td style="width:15%">-</td>
+            <td style="width:15%">-</td>
+            <td style="width:20%">
+                <b>Saldo Anterior: R$@Model.SaldoInicial.ToString("F")</b>
+            </td>
+        </tr>
+    </table>
+    <table style="width:100%" class="table-bordered borda">
+        <tr>
+            <td style="width:16%">
+                <b id="Subtitulo">Data</b>
+            </td>
+            <td style="width:11%">
+                <b id="Subtitulo">Usuário</b>
+            </td>
+            <td style="width:15%">
+                <b id="Subtitulo">Lancamento</b>
+            </td>
+            <td style="width:8%">
+                <b id="Subtitulo">Status</b>
+            </td>
+            <td style="width:15%">
+                <b id="Subtitulo">Débitos</b>
+            </td>
+            <td style="width:15%">
+                <b id="Subtitulo">Créditos</b>
+            </td>
+            <td style="width:20%">
+                <b id="Subtitulo">Saldo</b>
+            </td>
+        </tr>
+        @foreach (var item in Model.Movimentos)
+        {
+            <tr>
+                <td>
+                    @item.Data  @*Data*@
+                </td>
+                <td>
+                    @item.Usuario    @*Usuario*@
+                </td>
+                <td>
+                    @item.Tipo - @if(item.Cheque == true) {
+                        @:Cheque
+                    } else {
+                        @: Dinheiro
+                    } @*Tipo Mov*@
+                </td>
+                <td>
+                    @if (item.Ativo == true)
+                    {
+                        @:Efetivo
+                    }
+                    @if (item.Ativo == false)
+                    {
+                        @:Estornado
+                    }
+                </td>
+                <td>
+                    @if (item.Tipo == "Saque" || item.Tipo == "Envia Transferência")
+                    {
+                        @:R$@item.Valor.ToString("F") @*Débitos*@
+                    }
+                    else
+                    { <p>-</p>}
+                </td>
+                <td>
+                    @if (item.Tipo == "Depósito" || item.Tipo == "Recebe Transferência")
+                    {
+                        @:R$@item.Valor.ToString("F") @*Créditos*@
+                    }
+                    else
+                    {
+                        <p>-</p>
+                    }
+                </td>
+                <td>
+                    @if ((item.Tipo == "Saque" || item.Tipo == "Envia Transferência") && item.Ativo == true)
+                    {
+                        Model.SaldoInicial -= item.Valor;
+                        @:R$@Math.Round(Model.SaldoInicial, 2).ToString("F")
+                    }
+                    else if ((item.Tipo == "Depósito" || item.Tipo == "Recebe Transferência") && item.Ativo == true)
+                    {
+                        Model.SaldoInicial += item.Valor;
+                        @:R$@Math.Round(Model.SaldoInicial, 2).ToString("F")
+                    }
+                    else
+                    {
+                        @:-
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+    <table style="width:100%" class="table-bordered borda">
+        <tr>
+            <td style="width:16%">-</td>
+            <td style="width:11%">-</td>
+            <td style="width:15%">-</td>
+            <td style="width:8%">-</td>
+            <td style="width:15%">-</td>
+            <td style="width:15%">-</td>
+            <td style="width:20%">
+                <b>Saldo Final: R$@Model.SaldoFinal.ToString("F")</b>
+            </td>
+        </tr>
+    </table>
+    <table style="width:100%" class="table-bordered borda">
+        <tr>
+            <td>
+                <input class="btn btn-primary" type="button" name="imprimir" value="Imprimir Extrato" onclick="window.print();">
+            </td>
+        </tr>
+    </table>
+        </div>
+</body>

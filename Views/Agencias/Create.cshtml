@@ -1,0 +1,46 @@
+﻿@model AgenciaViewModel
+
+@{
+    ViewData["Title"] = "Adicionar Agência";
+}
+
+<div class="pai-agencia">
+    <div class="filho">
+        <div class="col-md-10 offset-1 cor p-4  alert-secondary  rounded">
+            <h4 class="font font-weight-bold m-2 text-center">Nova Agência</h4>
+            <hr />
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label font font-weight-bold">Banco</label>
+                    @Html.DropDownListFor(m => m.SelectedBancoId, Model.Bancos, new { @class = "form-control" })
+                    <a class="btn-xs ml-2" asp-controller="Bancos" asp-action="Create">Criar Novo Banco</a>
+                </div>
+                <div class="form-group">
+                    <label class="control-label font font-weight-bold">Pessoa Jurídica</label>
+                    @Html.DropDownListFor(m => m.SelectedPessoaJuridicaId, Model.PessoasJuridicas, new { @class = "form-control" })
+                    <div>*Apenas uma agência ou filial por pessoa jurídica</div>
+                    <a class="btn-xs ml-2" asp-controller="Pessoas" asp-action="CreatePJ">Criar Nova Pessoa Jurídica</a>
+                </div>
+                <div class="form-group font font-weight-bold">
+                    <label asp-for="Codigo" class="control-label font font-weight-bold">Código</label>
+                    <input asp-for="Codigo" value="" class="form-control" />
+                    <span asp-validation-for="Codigo" class="text-danger"></span>
+                </div>
+                <div class="form-group font font-weight-bold">
+                    <label asp-for="DigitoVerificador" class="control-label font font-weight-bold"></label>
+                    <input asp-for="DigitoVerificador" value="" class="form-control" />
+                    <span asp-validation-for="DigitoVerificador" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center m-2">
+                    <input type="submit" value="Criar" class="btn btn-primary rounded-pill m-1" />
+                </div>
+            </form>
+            <div class="text-center btns">
+            <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            </div>
+        </div>
+       </div>
+    </div>
+
+

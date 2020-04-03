@@ -1,0 +1,241 @@
+﻿@model PessoaFisica
+
+@{
+    ViewData["Title"] = "Editar Pessoa Física";
+}
+<div class="pai-pessoa">
+    <div class="filho">
+        <div class="col-md-10 alert-secondary cor offset-1 p-4 rounded">
+
+            <h4 class="font font-weight-bolder text-center m-1">Editar Pessoa Física</h4>
+            <hr />
+            <form asp-action="EditPF" item-id="@Model.Id" id='form_id' method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Nome" name="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CPF" class="control-label font font-weight-bold"></label>
+                    <input asp-for="CPF" name="CPF" class="form-control" />
+                    <span asp-validation-for="CPF" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RG" class="control-label font font-weight-bold"></label>
+                    <input asp-for="RG" name="RG" class="form-control" />
+                    <span asp-validation-for="RG" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OrgaoExpedidor" class="control-label font font-weight-bold"></label>
+                    <input asp-for="OrgaoExpedidor" name="OrgaoExpedidor" class="form-control" />
+                    <span asp-validation-for="OrgaoExpedidor" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataNascimento" class="control-label font font-weight-bold"></label>
+                    <input asp-for="DataNascimento" name="DataNascimento" class="form-control" />
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Genero" class="control-label font font-weight-bold"></label>
+                    <select id="Genero" name="Genero" class="custom-select" data-val="true">
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                    </select>
+                    <script>
+                    $("#Genero option[value=@Model.Genero]").attr('selected', 'selected');
+                    </script>
+                </div>
+                <div class="form-group font font-weight-bold">
+                    <div class="checkbox">
+                        <label>
+                            @{
+                                if (Model.Ativo == true)
+                                {
+                                    <label for="ativo" style="cursor:pointer; transition:all .3s ease-in-out;" id="lab"><i class="material-icons float-left text-success">check</i> Ativada</label>
+                                    <input id=ativo asp-for="Ativo" hidden />
+                                }
+                                else
+                                {
+                                    <label for="ativo" style="cursor:pointer;transition:all .3s ease-in-out;" id="lab"><i class="material-icons  float-left text-danger">close</i> Desativada</label>
+                                    <input id=ativo asp-for="Ativo" hidden />
+                                }
+                            }
+                        </label>
+                    </div>
+                </div>
+                <h2>Endereço:</h2>
+                <div class="form-group">
+                    <label asp-for="CEP" class="control-label font font-weight-bold"></label>
+                    <input asp-for="CEP" name="CEP" class="form-control" />
+                    <span asp-validation-for="CEP" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Rua" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Rua" name="Rua" class="form-control" />
+                    <span asp-validation-for="Rua" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumeroEndereco" class="control-label font font-weight-bold"></label>
+                    <input asp-for="NumeroEndereco" name="NumeroEndereco" class="form-control" />
+                    <span asp-validation-for="NumeroEndereco" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Complemento" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Complemento" name="Complemento" class="form-control" />
+                    <span asp-validation-for="Complemento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Bairro" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Bairro" name="Bairro" class="form-control" />
+                    <span asp-validation-for="Bairro" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cidade" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Cidade" name="Cidade" class="form-control" />
+                    <span asp-validation-for="Cidade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UF" name="UF" class="control-label font font-weight-bold"></label>
+                    <select id="UF" name="UF" class="custom-select">
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                    <script type="text/javascript">
+                    $("#UF option[value=@Model.UF]").attr('selected', 'selected');
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Pais" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Pais" name="Pais" class="form-control" />
+                    <span asp-validation-for="Pais" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Observacao" class="control-label font font-weight-bold"></label>
+                    <input asp-for="Observacao" name="Observacao" class="form-control" />
+                    <span asp-validation-for="Observacao" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center m-2">
+                    <input type="submit" value="Salvar" class="btn btn-primary m-1 rounded-pill" id="titulo" />
+                </div>
+            </form>
+            <div class="text-center btns">
+                <a asp-action="IndexPF" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ativo").change(function () {
+                var checado = $(this).is(":checked");
+                if (!checado) {
+                    $("#lab").html(" <label for='ativo'style='cursor:pointer;transition:all 1s ease-in-out;' id='lab'><i class='material-icons  float-left text-danger'>close</i>Desativada</label>");
+                }
+                else {
+                    $("#lab").html(" <label for='ativo' style='cursor:pointer;transition:all 1s ease-in-out;' id='lab'><i class='material-icons  float-left text-success '>check</i>Ativada</label>");
+                }
+            });
+        });
+    </script>
+
+    <!---------------------------------------------->
+    <!-- Adicionando JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <!-- Adicionando Javascript -->
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            function limpa_formulário_cep() {
+                // Limpa valores do formulário de cep.
+                $("#Rua").val("");
+                $("#Bairro").val("");
+                $("#Cidade").val("");
+                $("#UF").val("");
+            }
+
+            //Quando o campo cep perde o foco.
+            $("#CEP").blur(function () {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if (validacep.test(cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#Rua").val("...");
+                        $("#Bairro").val("...");
+                        $("#Cidade").val("...");
+                        $("#UF").val("...");
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#Rua").val(dados.logradouro);
+                                $("#Bairro").val(dados.bairro);
+                                $("#Cidade").val(dados.localidade);
+                                $("#UF").val(dados.uf);
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                limpa_formulário_cep();
+                                alert("CEP não encontrado.");
+                            }
+                        });
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            });
+        });
+
+    </script>
+}

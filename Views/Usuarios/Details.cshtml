@@ -1,0 +1,69 @@
+﻿@model Usuario
+@{
+    ViewData["Title"] = "Detalhes do Usuário";
+}
+
+<div class="pai-usuario">
+    <div class="filho text-center">
+        <h4 class="font font-weight-bold m-1 text-center">Detalhes do Usuário</h4>
+        <hr />
+        <dl class="col-6 offset-3 cor rounded ">
+            <dt>
+                @Html.DisplayNameFor(model => model.PessoaFisica.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PessoaFisica.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Celular)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Celular)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Senha)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Senha)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Empresa.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Empresa.Nome)
+            </dd>
+            <dt>
+                Filial
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Filial.PessoaJuridica.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </dt>
+            <dd>
+                @{ if (Model.Ativo == false)
+                    {
+                        <label><i class="material-icons text-danger float-left">close</i>Desativada</label>
+
+                    }
+                    else
+                    {
+                        <label class="font-weight-bolder"><i class="material-icons float-left text-center text-success">check</i>Ativada</label>
+
+                    }
+                }
+            </dd>
+        </dl>
+        <div class="text-center btns">
+            <a asp-action="Index" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar Para Lista</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary rounded-pill"><i class="material-icons float-left">create</i> Editar</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model MovimentoBancarioViewModel
+
+@{
+    ViewData["Title"] = "Lançamento Bancário";
+}
+
+
+<div class="mov">
+    <div class="rounded font font-weight-bold filho">
+        <h2 class="font font-weight-bold text-center m-1">Tipo de Transação</h2>
+        <h4 class="text-center m-2">Data: @DateTime.Now.ToShortDateString()</h4>
+        <h4 class="text-center m-2">Conta: @Model.ContaCorrente.NumeroDaConta @Model.ContaCorrente.DigitoVerificadorCC</h4>
+        <h4 class="text-center m-2">Saldo: R$@Model.ContaCorrente.Saldo</h4>
+        <form asp-action="Saque" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" value="@Model.ContaCorrente.Id" name="ContaCorrenteId" />
+            <input type="hidden" value="saque" name="tipo" />
+            <div class="form-group text-center m-2">
+                <input type="submit" value="Saque" class="btn btn-success rounded-pill m-1" />
+            </div>
+        </form>
+        <form asp-action="Deposito" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" value="deposito" name="tipo" />
+            <input type="hidden" value="@Model.ContaCorrente.Id" name="ContaCorrenteId" />
+            <div class="form-group text-center m-2">
+                <input type="submit" value="Depósito" class="btn btn-primary rounded-pill m-1" />
+            </div>
+        </form>
+        <form asp-action="Transferencia" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" value="transferencia" name="tipo" />
+            <input type="hidden" value="@Model.ContaCorrente.Id" name="ContaCorrenteId" />
+            <div class="form-group text-center m-2">
+                <input type="submit" value="Transferência" class="btn btn-warning rounded-pill m-1" />
+            </div>
+        </form>
+        <div class="btns">
+        <a asp-action="InicioLancamento" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar</a>
+        </div>
+    </div>
+</div>
+
+

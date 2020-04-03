@@ -1,0 +1,24 @@
+﻿@model MovimentoBancarioViewModel
+
+@{
+    ViewData["Title"] = "Lançamento Bancário";
+}
+
+<div class="mov">
+    <div class="filho">
+        <h2 class="font font-weight-bold text-center m-1">Novo Lançamento</h2>
+        <form asp-action="#" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group m-1 text-center">
+                <a asp-action="DigitarConta" class="btn btn-primary botoes">Digitar Conta Bancária</a>
+            </div>
+            <div class="form-group m-1 text-center ">
+                <a asp-action="SelecionarConta" class="btn btn-primary botoes ">Selecionar Conta Bancária</a>
+            </div>
+        </form>
+        <div class="btns">
+            <a asp-controller="Home" asp-action="InicioLogado" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar</a>
+        </div>
+    </div>
+</div>
+

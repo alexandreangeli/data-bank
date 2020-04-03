@@ -1,0 +1,80 @@
+﻿@model MovimentoBancarioViewModel
+
+@{
+    ViewData["Title"] = "Saque";
+}
+
+
+<div class="mov ">
+    <div class=" rounded font font-weight-bold filho">
+        <h2 class="font font-weight-bold text-center m-1">Saque</h2>
+        <h4 class="text-center m-2">Saldo: R$@Model.ContaCorrente.Saldo</h4>
+        <form action="ConfirmarMovimento" method="post">
+            <input type="hidden" value="@Model.ContaCorrente.Id" name="ContaCorrenteId" />
+            <input type="hidden" value="saque" name="tipo" />
+            <input type="text" id="saldo" name="name" hidden value="@Model.ContaCorrente.Saldo" />
+            <div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group inputs">
+                    <label asp-for="Valor" class="control-label">Valor a Sacar (R$):</label>
+
+                    <input asp-for="Valor" name="Valor" value="" id="inputValor" class="form-control" />
+                    <span asp-validation-for="Valor" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+
+                    <label asp-for="MovimentoBancario.Cheque" class="control-label">Opção de Saque:</label>
+                    <br />
+                    <input type="radio" id="cheque" name="cheque" value="true" asp-for="MovimentoBancario.Cheque" />
+                    <label for="cheque"  style="cursor:pointer;">Cheque</label>
+                    <br />
+                    <input type="radio" id="dinheiro" name="cheque" value="false" asp-for="MovimentoBancario.Cheque" />
+                    <label for="dinheiro" style="cursor:pointer;">Dinheiro</label>
+                    <span asp-validation-for="MovimentoBancario.Cheque" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center m-2">
+                    <input type="submit" id="enviar" value="Confirmar" class="btn btn-primary rounded-pill m-2" onclick="checaValor()" />
+                </div>
+            </div>
+        </form>
+        <div class="btns">
+            <a asp-action="TipoDeMovimento" asp-route-contacorrenteid="@Model.ContaCorrente.Id" class="btn btn-dark rounded-pill"><i class="material-icons float-left font">arrow_back</i>Voltar</a>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal-container">
+    <div class="erro fonte">
+        <button class="fecha">X</button>
+        <h1 class="text-danger errotext">Valor Inválido</h1>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script src="~/lib/JQuery/JQueryFixes.js" type="text/javascript"></script>
+    <script src="~/lib/JQuery/JQueryFixes.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function checaValor() {
+            var saldo = parseFloat($("#saldo").val());
+            var valor = parseFloat($("#inputValor").val());
+            if (valor > saldo || valor == 0) {
+                $("#enviar").prop('type', 'button');
+                const modal = document.getElementById("modal");
+                modal.classList.add("mostra");
+                modal.addEventListener('click', (e) => {
+                    if (e.target.id == 'modal' || e.target.className == 'fecha') {
+                        modal.classList.remove("mostra");
+                    }
+                });
+            } else {
+                $("#enviar").prop('type', 'submit');
+            }
+        }
+
+    </script>
+}
+
+

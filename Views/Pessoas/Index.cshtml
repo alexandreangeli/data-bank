@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Pessoas";
+}
+
+<style>
+
+
+    .sobrinho-pessoa{
+        background: rgba(0,0,0,.8);
+    }
+
+</style>
+
+<div class="row pai-pessoa">
+    <div class="col-5 filho">
+        <div class="col-10 offset-4 p-5 sobrinho-pessoa m-5 text-center alert-secondary">
+            <a asp-controller="Pessoas" asp-action="IndexPJ" class="btn btn-outline-primary m-3 ">Pessoas Jurídicas</a>
+            <a asp-controller="Pessoas" asp-action="IndexPF" class="btn btn-outline-success m-3 ">Pessoas Físicas</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+﻿@model MovimentoBancarioViewModel
+
+@{
+    ViewData["Title"] = "Estorno Bancário";
+}
+
+<style>
+    .sobrinho-estorno {
+        background: rgba(0, 1, 1,.6);
+        color: white;
+    }
+</style>
+
+
+
+<link href="~/css/site.css" rel="stylesheet" />
+<div class=" pai-estorno">
+    <div class=" alert-secondary rounded filho col-10">
+        <h2 class="font font-weight-bold text-center m-1">Estorno de Movimentação</h2>
+        <hr />
+        @if (!Model.Movimentos.Any())
+        {
+            @:A Conta Corrente selecionada não possui nenhuma movimentação bancária.
+        }
+        else
+        {
+            @if (Model.Data != DateTime.MinValue)
+            {
+                <h2 class="text-center font font-weight-bold">Data: @Model.Data.ToShortDateString()</h2>
+            }
+            else
+            {
+                <h2 class="text-center font font-weight-bold">Exibindo todos os movimentos:</h2>
+
+            }
+            <br />
+            <table class="table table-dark rounded font font-we btable-hover table-secondary table-responsive-md table-responsive-lg ">
+                <thead class="font font-weight-bolder ">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MovimentoBancario.Data)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MovimentoBancario.Tipo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MovimentoBancario.Valor)
+                        </th>
+                        <th>
+                            Usuário
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MovimentoBancario.Ativo)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="font">
+                    @foreach (var item in Model.Movimentos)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Data)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tipo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Valor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Usuario)
+                            </td>
+                            <td>
+                                @{ if (item.Ativo == false)
+                                    {
+                                        <i class="material-icons text-danger">close</i>
+
+                                    }
+                                    else
+                                    {
+                                        <i class="material-icons text-center text-success">check</i>
+
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @if (item.Ativo == true)
+                                {
+                                    <a asp-action="ConfirmarEstorno" asp-route-movimentoid="@item.Id" asp-route-contacorrenteid="@Model.ContaCorrente.Id" class="btn btn-danger rounded-pill m-2">Estornar</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

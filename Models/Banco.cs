@@ -1,11 +1,11 @@
-﻿using Databank.Repositories;
+﻿using DataBank.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace Databank.Models
+namespace DataBank.Models
 {    
     public class Banco: BaseModel
     {

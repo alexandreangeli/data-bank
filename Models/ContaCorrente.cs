@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace Databank.Models
+namespace DataBank.Models
 {
     public class ContaCorrente : BaseModel
     {

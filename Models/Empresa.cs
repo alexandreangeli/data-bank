@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace Databank.Models
+namespace DataBank.Models
 {
     public class Empresa : BaseModel
     {

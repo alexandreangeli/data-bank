@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Databank.Models;
+using DataBank.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Databank.Repositories
+namespace DataBank.Repositories
 {
     public interface IUsuarioRepository
     {

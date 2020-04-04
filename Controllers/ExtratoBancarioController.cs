@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Databank.Models.ViewModels;
-using Databank.Repositories;
+using DataBank.Models.ViewModels;
+using DataBank.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Databank.Controllers
+namespace DataBank.Controllers
 {
     public class ExtratoBancarioController : Controller
     {

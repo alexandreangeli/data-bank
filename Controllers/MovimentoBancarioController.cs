@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Databank.Models;
-using Databank.Models.ViewModels;
-using Databank.Repositories;
+using DataBank.Models;
+using DataBank.Models.ViewModels;
+using DataBank.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Databank.Controllers
+namespace DataBank.Controllers
 {
     [Authorize]
     public class MovimentoBancarioController : Controller

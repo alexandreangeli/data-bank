@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Databank.Models
+namespace DataBank.Models
 {
     [DataContract]
     public class BaseModel

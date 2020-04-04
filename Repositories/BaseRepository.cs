@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Databank.Models;
+using DataBank.Models;
 
 
-namespace Databank.Repositories
+namespace DataBank.Repositories
 {
     public class BaseRepository<T> where T : BaseModel
     {

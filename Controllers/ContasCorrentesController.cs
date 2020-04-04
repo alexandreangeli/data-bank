@@ -1,14 +1,14 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Databank.Models;
-using Databank.Repositories;
+using DataBank.Models;
+using DataBank.Repositories;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Databank.Models.ViewModels;
+using DataBank.Models.ViewModels;
 using System;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Databank.Controllers
+namespace DataBank.Controllers
 {
     [Authorize]
     public class ContasCorrentesController : Controller

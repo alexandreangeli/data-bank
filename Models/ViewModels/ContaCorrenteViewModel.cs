@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace Databank.Models.ViewModels
+namespace DataBank.Models.ViewModels
 {
     public class ContaCorrenteViewModel
     {

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Databank.Models;
+using DataBank.Models;
 
 using Microsoft.EntityFrameworkCore;
-using static Databank.Repositories.BancoRepository;
+using static DataBank.Repositories.BancoRepository;
 
-namespace Databank.Repositories
+namespace DataBank.Repositories
 {
     public interface IPessoaFisicaRepository
     {

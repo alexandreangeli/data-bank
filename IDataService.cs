@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Databank
+namespace DataBank
 {
     public interface IDataService
     {

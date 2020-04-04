@@ -1,9 +1,9 @@
-﻿using Databank.Models;
+﻿using DataBank.Models;
 
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 
-namespace Databank.Repositories
+namespace DataBank.Repositories
 {
     public class ApplicationContext : DbContext
     {

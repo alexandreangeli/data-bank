@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Databank.Models;
-using Databank.Repositories;
-using Databank.Models.ViewModels;
+using DataBank.Models;
+using DataBank.Repositories;
+using DataBank.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Databank.Controllers
+namespace DataBank.Controllers
 {
     public class HomeController : Controller
     {

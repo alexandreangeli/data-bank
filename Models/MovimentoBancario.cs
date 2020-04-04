@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace Databank.Models
+namespace DataBank.Models
 {
     public class MovimentoBancario : BaseModel
     {

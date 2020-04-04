@@ -1,11 +1,11 @@
-﻿using Databank.Models;
-using Databank.Repositories;
+﻿using DataBank.Models;
+using DataBank.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Databank.Controllers
+namespace DataBank.Controllers
 {
     [Authorize]
     public class PessoasController : Controller

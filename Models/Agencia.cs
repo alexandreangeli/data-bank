@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.EntityFrameworkCore;
 
-namespace Databank.Models
+namespace DataBank.Models
 {
     
     public class Agencia : BaseModel

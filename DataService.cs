@@ -15,9 +15,6 @@ namespace Databank
         private readonly IBancoRepository bancoRepository;
         private readonly IEmpresaRepository EmpresaRepository;
 
-
-
-
         public DataService(ApplicationContext contexto,
             IBancoRepository bancoRepository, IEmpresaRepository EmpresaRepository
          )
@@ -25,22 +22,11 @@ namespace Databank
             this.contexto = contexto;
             this.bancoRepository = bancoRepository;
             this.EmpresaRepository = EmpresaRepository;
-     
         }
 
         public async Task InicializaDB()
         {
             await contexto.Database.MigrateAsync();
-
-     
-         
-
-    
         }
-
-
-
-
-       
     }
 }
